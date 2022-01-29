@@ -2,8 +2,8 @@
   <img src="https://raw.githubusercontent.com/ArkerLabs/redisk/master/docs/images/logo.png" alt="Redisk">
 </h1>
 
-[![npm version](https://badge.fury.io/js/redisk.svg)](https://badge.fury.io/js/redisk) 
-![Redisk CI](https://github.com/ArkerLabs/redisk/workflows/Redisk%20CI/badge.svg)
+[![npm version](https://badge.fury.io/js/redisk.svg)](https://badge.fury.io/js/redisk)
+[![Redisk CI](https://github.com/ArkerLabs/redisk/actions/workflows/nodejs.yml/badge.svg)](https://github.com/ArkerLabs/redisk/actions/workflows/nodejs.yml)
 
 Redisk is a TypeScript ORM library for Redis.
 
@@ -96,7 +96,7 @@ const redisk = Redisk.init(options);
 | host     | Host of the Redis server                                                                                                                |
 | port     | Port of the Redis server                                                                                                                |
 | db       | Number of the db (Default: 0)                                                                                                           |
-| password | Password of the Redis server     
+| password | Password of the Redis server
 
 
 Closing connection to Redis:
@@ -154,7 +154,7 @@ export class User {
 ### Entity
 Use the decorator `Entity` to convert your class into a Redisk entity.
 
-You can pass the option canBeListed to 'false' (Default is true) to save some space, but you will not be able to list user entities. 
+You can pass the option canBeListed to 'false' (Default is true) to save some space, but you will not be able to list user entities.
 
 ```ts
 @Entity('user', { canBeListed: true })
@@ -182,7 +182,7 @@ export class User {
 ```
 
 #### Supported types
-Redisk support multiple types to store and query. 
+Redisk support multiple types to store and query.
 - String
 - Date (Will be saved as a timestamp)
 - Boolean
@@ -203,7 +203,7 @@ export class User {
 ```
 
 ### Unique
-This decorator is used to make the value of this field unique for all the same entities. 
+This decorator is used to make the value of this field unique for all the same entities.
 Then you can use it to query the entity.
 ```ts
 @Entity('user')
@@ -253,7 +253,7 @@ await redisk.save(user);
 await redisk.getOne(User, id);
 ```
 
-### Get by unique key 
+### Get by unique key
 
 ```ts
 const value = 'john@doe.com';
@@ -270,7 +270,7 @@ await redisk.count(User);
 ### List all
 Returns an array of all user entities.
 ```ts
-await redisk.list(User); 
+await redisk.list(User);
 ```
 
 Returns the first 10 user entities
@@ -293,7 +293,7 @@ await redisk.list(User, undefined, undefined, undefined, {
 Returns an array of users where his color is red
 
 ```ts
-const where = 
+const where =
     conditions: [
         {
             key: 'color',
@@ -303,12 +303,12 @@ const where =
     ],
     type: 'AND',
 };
-await redisk.list(User, where, limit, offset); 
+await redisk.list(User, where, limit, offset);
 ```
 
 Returns an array of users where his creation date is greater than the day 23
 ```ts
-const where = 
+const where =
     conditions: [
         {
             key: 'created',
@@ -318,7 +318,7 @@ const where =
     ],
     type: 'AND',
 };
-await redisk.list(User, where, limit, offset); 
+await redisk.list(User, where, limit, offset);
 ```
 
 #### Multiple conditions
@@ -327,7 +327,7 @@ Returns an array of entities that his color field is 'red' or 'blue'.
 Warning: Using multiple conditions leads to multiple queries with table intersections, to achieve high performance queries try to reduce the results with more concise conditional.
 
 ```ts
-const where = 
+const where =
     conditions: [
         {
             key: 'color',
@@ -347,7 +347,7 @@ await redisk.list(User, where, limit, offset);
 
 Returns an array of entities that his color field is 'red' and his food field is 'avocado'
 ```ts
-const where = 
+const where =
     conditions: [
         {
             key: 'color',
