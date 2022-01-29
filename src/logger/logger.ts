@@ -16,7 +16,7 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.Console({ level: process.env.LOG_LEVEL })
   ],
-  level: !process.env.REDISK_LOG_LEVEL ? 'warn' : process.env.REDISK_LOG_LEVEL
+  level: winston.level[!process.env.REDISK_LOG_LEVEL ? "warn" : process.env.REDISK_LOG_LEVEL]
 });
 
 export default logger;
